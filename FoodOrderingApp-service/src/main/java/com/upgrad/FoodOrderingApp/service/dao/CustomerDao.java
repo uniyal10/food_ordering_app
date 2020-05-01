@@ -17,4 +17,5 @@ public class CustomerDao {
         entityManager.persist(customerEntity);
         return customerEntity;
     }
+
 }
