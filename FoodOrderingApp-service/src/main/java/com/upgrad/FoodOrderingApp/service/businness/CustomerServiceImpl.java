@@ -4,6 +4,8 @@ import com.upgrad.FoodOrderingApp.service.dao.CustomerDao;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerAuthEntity;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerEntity;
 import com.upgrad.FoodOrderingApp.service.exception.AuthenticationFailedException;
+import com.upgrad.FoodOrderingApp.service.exception.SignUpRestrictedException;
+
 import com.upgrad.FoodOrderingApp.service.exception.AuthorizationFailedException;
 import com.upgrad.FoodOrderingApp.service.exception.SignUpRestrictedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +29,19 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public CustomerEntity saveCustomer(CustomerEntity customerEntity) {
-        //handle the validations
-
-
+    public CustomerEntity saveCustomer(CustomerEntity customerEntity) throws SignUpRestrictedException {
 
         CustomerEntity customerEntity1 =  customerDao.getCustomerByContactNumber(customerEntity.getContactNumber());
 
         if(customerEntity1 != null) {
-
+                 throw new SignUpRestrictedException("SGR-001","This contact number is already registered! Try other contact number.");
         }
 
 
-        valididateEmail(customerEntity.getEmailAddress());
+        if( valididateEmail(customerEntity.getEmailAddress())==false){
+            throw new SignUpRestrictedException("SGR-002","Invalid email-id format!");
+        }
+
 
         int contactNumberlength = customerEntity.getContactNumber().length();
 
@@ -51,11 +53,12 @@ public class CustomerServiceImpl implements CustomerService {
         //if validations are okay then save the customer in db;
 
 
-
+        System.out.println(customerEntity.getPassword());
 
         String[] encryptPassoword = passwordCryptographyProvider.encrypt(customerEntity.getPassword());
 
         customerEntity.setSalt(encryptPassoword[0]);
+        System.out.println(customerEntity.getSalt());
         customerEntity.setPassword(encryptPassoword[1]);
 
         return customerDao.saveCustomer(customerEntity);
@@ -64,13 +67,6 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     private boolean valididateEmail(String email) {
-
-        //logic for validating the email.
-
-        if(email == null) {
-            // throw exception
-        }
-
 
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +

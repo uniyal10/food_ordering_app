@@ -33,7 +33,7 @@ public class CategoryController {
 //        CustomerEntity customerEntity = customerService.getCustomer(access_token);
         List<CategoryEntity> categoryEntities = categoryService.getAllCategories();
         List<CategoryListResponse> list = new ArrayList<CategoryListResponse>();
-        
+
         for(CategoryEntity categoryEntity : categoryEntities){
             CategoryListResponse categoryListResponse = new CategoryListResponse();
             categoryListResponse.setId(UUID.fromString(categoryEntity.getUuid()));

@@ -15,8 +15,10 @@ public class CustomerExceptionHandler {
 
 
     @ExceptionHandler(SignUpRestrictedException.class)
-    public ResponseEntity<ErrorResponse> signUpRestrictions(SignUpRestrictedException s, WebRequest webRequest) {
-        return new ResponseEntity<ErrorResponse>(new ErrorResponse().code(s.getCode()), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorResponse> signUpRestrictions(SignUpRestrictedException exe, WebRequest webRequest) {
+        return new ResponseEntity<ErrorResponse>(
+                new ErrorResponse().code(exe.getCode()).message(exe.getErrorMessage()), HttpStatus.NOT_FOUND
+        );
     }
 
 

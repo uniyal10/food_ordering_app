@@ -34,8 +34,8 @@ public class CustomerController {
         //validate this request.
 
 
-        if (signupCustomerRequest.getLastName().isEmpty()) {
-            throw new SignUpRestrictedException("SGR -005", "Last name cannot be empty");
+        if (signupCustomerRequest.getFirstName().isEmpty()||signupCustomerRequest.getContactNumber().isEmpty()||signupCustomerRequest.getEmailAddress().isEmpty()||signupCustomerRequest.getPassword().isEmpty()) {
+            throw new SignUpRestrictedException("SGR -005", "Except last name all fields should be filled");
         }
 
         signupCustomerRequest.getContactNumber().length();
@@ -90,6 +90,7 @@ public class CustomerController {
         }
 
         String decodedArray[] = decodedText.split(":");
+        System.out.println(decodedArray[0]);
 
         CustomerAuthEntity customerAuthEntity = customerService.login(decodedArray[0], decodedArray[1]);
 
