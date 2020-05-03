@@ -29,4 +29,12 @@ public class CategoryDaoImpl implements CategoryDao {
         }
     }
 
+    @Override
+    public List<CategoryEntity> getAllCategories() {
+        try {
+            return entityManager.createNamedQuery("getAllCategories", CategoryEntity.class).getResultList();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
 }

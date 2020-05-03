@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface CategoryDao {
 
+    List<CategoryEntity> getAllCategories();
     CategoryEntity getCategoryById(String categoryId);
 
 }

@@ -1,3 +1,4 @@
+C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\entity\CategoryItemEntity.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\exception\ItemNotFoundException.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\entity\StateEntity.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\ItemService.java
@@ -7,9 +8,9 @@ C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrd
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\CustomerServiceImpl.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\dao\RestaurantDaoImpl.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\ServiceConfiguration.java
+C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\entity\RestaurantItemEntity.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\entity\CustomerAddressEntity.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\exception\SignUpRestrictedException.java
-C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\AdressServiceImpl.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\common\GenericErrorCode.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\entity\CategoryEntity.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\entity\CustomerAuthEntity.java
@@ -30,11 +31,15 @@ C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrd
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\dao\CustomerDao.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\exception\AuthenticationFailedException.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\AddressService.java
+C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\CategoryServiceImpl.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\RestaurantService.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\dao\CustomerDaoImpl.java
+C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\entity\RestaurantCategoryEntity.java
+C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\AddressServiceImpl.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\dao\RestaurantDao.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\exception\CustomerNotFoundException.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\PasswordCryptographyProvider.java
+C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\CategoryService.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\dao\AddressDao.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\exception\AuthorizationFailedException.java
 C:\Users\Sudhanshu\Desktop\FoodOrderingAppBackend\FoodOrderingAppBackend\FoodOrderingApp-service\src\main\java\com\upgrad\FoodOrderingApp\service\businness\JwtTokenProvider.java
