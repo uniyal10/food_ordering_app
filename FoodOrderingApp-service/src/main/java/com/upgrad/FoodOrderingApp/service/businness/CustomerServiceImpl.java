@@ -30,6 +30,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public CustomerEntity saveCustomer(CustomerEntity customerEntity) throws SignUpRestrictedException {
+        if( valididateEmail(customerEntity.getEmailAddress())==false){
+            throw new SignUpRestrictedException("SGR-002","Invalid email-id format!");
+        }
+
+
+        if(valididateNumber(customerEntity.getContactNumber())==false){
+
+            throw new SignUpRestrictedException("SGR-003","Invalid contact number!");
+        }
 
         CustomerEntity customerEntity1 =  customerDao.getCustomerByContactNumber(customerEntity.getContactNumber());
 
@@ -38,9 +47,6 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
 
-        if( valididateEmail(customerEntity.getEmailAddress())==false){
-            throw new SignUpRestrictedException("SGR-002","Invalid email-id format!");
-        }
 
 
         int contactNumberlength = customerEntity.getContactNumber().length();
@@ -82,6 +88,17 @@ public class CustomerServiceImpl implements CustomerService {
         return true;
     }
 
+    private boolean valididateNumber(String num){
+        String pattern = "\\d{6,10}";
+        Pattern pat = Pattern.compile(pattern);
+        Matcher matcher = pat.matcher(num);
+        if(!matcher.matches()) {
+            return false;
+        }
+
+        return true;
+
+    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
