@@ -103,12 +103,15 @@ public class CustomerController {
     public ResponseEntity<LogoutResponse> logout(@RequestHeader("authorization") final String auth)
             throws AuthorizationFailedException {
 
-        String accessToken = auth.split("BearerToken ")[1];
+        String accessToken[] = auth.split("Bearer ");
 
-        customerService.logout(accessToken);
+         customerService.logout(accessToken[1]);
 
 
         LogoutResponse logoutResponse = new LogoutResponse();
+        logoutResponse.setId(UUID.randomUUID().toString());
+
+        logoutResponse.setMessage("Logged out sucessfully");
         return new ResponseEntity<LogoutResponse>(logoutResponse, HttpStatus.OK);
     }
 

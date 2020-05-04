@@ -43,6 +43,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     public CustomerAuthEntity getCustomerAuthByAccesstoken(String accesstoken) {
         try {
+            System.out.println(accesstoken.length());
             return entityManager.createNamedQuery("customerAuthByAccesstoken", CustomerAuthEntity.class).setParameter("accesstoken", accesstoken).getSingleResult();
         } catch (NoResultException nre) {
             return null;

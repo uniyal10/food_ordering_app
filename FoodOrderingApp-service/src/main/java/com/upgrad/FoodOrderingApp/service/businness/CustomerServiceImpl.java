@@ -162,15 +162,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void logout(String accessToken) throws AuthorizationFailedException {
 
 
         CustomerAuthEntity customerAuthEntity = authorization(accessToken);
         customerAuthEntity.setLogoutAt(ZonedDateTime.now());
 
-        customerDao.updateCustomerAuthEntity(customerAuthEntity);
-
-
+         customerDao.updateCustomerAuthEntity(customerAuthEntity);
 
     }
 }
