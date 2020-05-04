@@ -40,6 +40,10 @@ public class CustomerServiceImpl implements CustomerService {
             throw new SignUpRestrictedException("SGR-003","Invalid contact number!");
         }
 
+        if(valididatePassword(customerEntity.getPassword())==false){
+            throw  new SignUpRestrictedException("SGR-004","Weak password!");
+        }
+
         CustomerEntity customerEntity1 =  customerDao.getCustomerByContactNumber(customerEntity.getContactNumber());
 
         if(customerEntity1 != null) {
@@ -99,6 +103,17 @@ public class CustomerServiceImpl implements CustomerService {
         return true;
 
     }
+    public boolean valididatePassword(String pwd){
+        String pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        Pattern pat = Pattern.compile(pattern);
+        Matcher matcher = pat.matcher(pwd);
+        if(!matcher.matches()) {
+            return false;
+        }
+
+        return true;
+    }
+
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
