@@ -51,24 +51,9 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
 
-
-
-        int contactNumberlength = customerEntity.getContactNumber().length();
-
-//		if(customerDao.getCustomer(customerEntity.getContactNumber() != null) {
-//			//throw exception
-//		}
-
-
-        //if validations are okay then save the customer in db;
-
-
-        System.out.println(customerEntity.getPassword());
-
         String[] encryptPassoword = passwordCryptographyProvider.encrypt(customerEntity.getPassword());
 
         customerEntity.setSalt(encryptPassoword[0]);
-        System.out.println(customerEntity.getSalt());
         customerEntity.setPassword(encryptPassoword[1]);
 
         return customerDao.saveCustomer(customerEntity);
@@ -119,6 +104,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional(propagation = Propagation.REQUIRED)
     public CustomerAuthEntity login(String contactNumber, String password) throws AuthenticationFailedException {
 
+        if(valididateNumber(contactNumber)==false){
+            throw new AuthenticationFailedException("ATH-003","Incorrect format of decoded customer name and password");
+        }
+
         CustomerEntity customerEntity = null;
         customerEntity = customerDao.getCustomerByContactNumber(contactNumber);
 
@@ -129,7 +118,7 @@ public class CustomerServiceImpl implements CustomerService {
         final String encryptedPassword = PasswordCryptographyProvider.encrypt(password, customerEntity.getSalt());
 
 
-        if (true) {
+        if (encryptedPassword.equals(customerEntity.getPassword())) {
             JwtTokenProvider jwtTokenProvider = new JwtTokenProvider(encryptedPassword);
             CustomerAuthEntity customerAuthEntity = new CustomerAuthEntity();
             customerAuthEntity.setUuid(UUID.randomUUID().toString());

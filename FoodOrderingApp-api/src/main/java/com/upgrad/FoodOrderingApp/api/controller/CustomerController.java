@@ -52,7 +52,7 @@ public class CustomerController {
         final CustomerEntity responseCustomer = customerService.saveCustomer(customerEntity);
         SignupCustomerResponse signupCustomerResponse = new SignupCustomerResponse();
         signupCustomerResponse.setId(responseCustomer.getUuid());
-        signupCustomerResponse.setStatus("Customer Registered");
+        signupCustomerResponse.setStatus("CUSTOMER SUCCESSFULLY REGISTERED");
         return new ResponseEntity<SignupCustomerResponse>(signupCustomerResponse, HttpStatus.CREATED);
     }
 
@@ -60,24 +60,6 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.POST, path = "/login", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<LoginResponse> login(@RequestHeader("authorization") final String auth)
             throws AuthenticationFailedException {
-
-        //call to service to login
-
-        //Use https://www.base64encode.org/ to create the encoded string
-
-        //pass that encoded string in request header.
-
-        //decode that string and get the password and contact number(On upgrad's portal there is a seperate lecture for this, see that one).
-
-        // After decoding it check if that contact number exist in database if not then throw exception otherwise encrypt the decoded
-        // password and check with password if matched then create a random string
-
-        // create one more table customerAuthEntity and store this string and current time inside that table and customer also.
-
-        //set that random string in response headers and return it in response.
-
-
-        System.out.println("Auth Token " + auth);
 
         byte[] decode = Base64.getDecoder().decode(auth.split("Basic ")[1]);
 
@@ -100,6 +82,13 @@ public class CustomerController {
         LoginResponse loginResponse = new LoginResponse();
         //create the login response
         loginResponse.setContactNumber(customer.getContactNumber());
+
+        loginResponse.setEmailAddress(customer.getEmailAddress());
+        loginResponse.setFirstName(customer.getFirstName());
+        loginResponse.setId(customer.getUuid());
+        loginResponse.setLastName(customer.getLastname());
+        loginResponse.setMessage("Logged in Sucessfully");
+
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("accessToken", customerAuthEntity.getAccessToken());
