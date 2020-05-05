@@ -35,6 +35,10 @@ public class AddressController {
 
         //validate the user first using this
         CustomerEntity customerEntity = customerService.getCustomer(access_token);
+        if(saveAddressRequest.getFlatBuildingName().isEmpty()||saveAddressRequest.getCity().isEmpty()||saveAddressRequest.getLocality().isEmpty()
+             ||saveAddressRequest.getPincode().isEmpty()){
+            throw new SaveAddressException("SAR-001","No field can be empty");
+        }
 
         final AddressEntity addressEntity = new AddressEntity();
 
@@ -42,7 +46,7 @@ public class AddressController {
         addressEntity.setLocality(saveAddressRequest.getLocality());
         addressEntity.setCity(saveAddressRequest.getCity());
         addressEntity.setPincode(saveAddressRequest.getPincode());
-        // addressEntity.setState(addressService.getStateByUUID(saveAddressRequest.getStateUuid()));
+        addressEntity.setState(addressService.getState(saveAddressRequest.getStateUuid()));
         addressEntity.setUuid(UUID.randomUUID().toString());
 
         final CustomerAddressEntity customerAddressEntity = new CustomerAddressEntity();

@@ -154,8 +154,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerEntity getCustomer(String access_token) throws AuthorizationFailedException {
 
-        authorization(access_token);
-        CustomerAuthEntity customerAuthEntity = customerDao.getCustomerAuthByAccesstoken(access_token);
+      CustomerAuthEntity customerAuthEntity =  authorization(access_token);
+//        CustomerAuthEntity customerAuthEntity = customerDao.getCustomerAuthByAccesstoken(access_token);
         return customerAuthEntity.getCustomer();
     }
 

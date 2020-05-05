@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 class AddressServiceImpl implements AddressService {
@@ -28,15 +30,25 @@ class AddressServiceImpl implements AddressService {
             SaveAddressException {
         //validations
 
-        if(addressEntity.getPincode().isEmpty() || addressEntity.getFlatBuilNo().isEmpty()) {
-            throw new SaveAddressException("SAR-001", "No Fiels Can be empty");
+        if(valididatePincode(addressEntity.getPincode())==false) {
+            throw new SaveAddressException("SAR-002", "Invalid pincode");
         }
 
         addressDao.saveAddress(addressEntity);
-        saveCustomerAddress(customerAddressEntity);
+        addressDao.saveCustomerAddress(customerAddressEntity);
         return  addressEntity;
     }
+    private boolean valididatePincode(String num){
+        String pattern = "\\d{6}";
+        Pattern pat = Pattern.compile(pattern);
+        Matcher matcher = pat.matcher(num);
+        if(!matcher.matches()) {
+            return false;
+        }
 
+        return true;
+
+    }
 
     @Override
     public AddressEntity getAddressByUUID(String addressId, CustomerEntity customerEntity) throws
@@ -60,8 +72,12 @@ class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public StateEntity getState(String stateUUID) {
-        return addressDao.getStateByUUID(stateUUID);
+    public StateEntity getState(String stateUUID) throws AddressNotFoundException {
+        StateEntity stateEntity = addressDao.getStateByUUID(stateUUID);
+            if(stateEntity==null){
+                throw new AddressNotFoundException("ANF-002","No state by this id");
+            }
+            return stateEntity;
     }
 
 

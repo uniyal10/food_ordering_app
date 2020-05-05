@@ -28,17 +28,16 @@ public class AddressEntity implements Serializable {
     @Column(name = "flat_buil_number", nullable = false)
     private String flatBuilNo;
 
-    @Column(nullable = false)
+    @Column(name = "locality",nullable = false)
     private String locality;
 
-    @Column(nullable = false)
+    @Column(name = "city",nullable = false)
     private String city;
 
-    @Column(nullable = false)
+    @Column(name = "pincode",nullable = false)
     private String pincode;
 
     @OneToOne
-    @NotNull
     private StateEntity state;
 
     public AddressEntity(String uuid, String flatBuilNo, String locality, String city, String pincode, StateEntity state) {

@@ -21,6 +21,6 @@ public interface AddressService {
     AddressEntity getAddressByUUID(String addressId, CustomerEntity customerEntity) throws AuthorizationFailedException,
             AddressNotFoundException;
     List<AddressEntity> getAllAddress(CustomerEntity customer);
-    StateEntity getState(String stateUUID);
+    StateEntity getState(String stateUUID) throws AddressNotFoundException;
 
 }
