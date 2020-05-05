@@ -34,7 +34,7 @@ public class AddressController {
         String access_token = authorization.split("Bearer ")[1];
 
         //validate the user first using this
-        CustomerEntity customerEntity = customerService.getCustomer(authorization);
+        CustomerEntity customerEntity = customerService.getCustomer(access_token);
 
         final AddressEntity addressEntity = new AddressEntity();
 

@@ -12,5 +12,6 @@ public interface CustomerDao {
     CustomerAuthEntity saveCustomerAuth(CustomerAuthEntity customerAuthEntity);
 
     CustomerEntity updateCustomerAuthEntity(CustomerAuthEntity customerAuthEntity);
+//    CustomerEntity updatepwd(CustomerEntity customerEntity,String pwd);
 
 }

@@ -5,6 +5,7 @@ import com.upgrad.FoodOrderingApp.api.model.ErrorResponse;
 import com.upgrad.FoodOrderingApp.service.exception.AuthenticationFailedException;
 import com.upgrad.FoodOrderingApp.service.exception.AuthorizationFailedException;
 import com.upgrad.FoodOrderingApp.service.exception.SignUpRestrictedException;
+import com.upgrad.FoodOrderingApp.service.exception.UpdateCustomerException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,6 +32,11 @@ public class CustomerExceptionHandler {
 
     @ExceptionHandler(AuthorizationFailedException.class)
     public ResponseEntity<ErrorResponse> authorizationFailedException(AuthorizationFailedException s, WebRequest webRequest) {
+        return new ResponseEntity<ErrorResponse>(new ErrorResponse().code(s.getCode()).message(s.getErrorMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UpdateCustomerException.class)
+    public ResponseEntity<ErrorResponse> UpdateCustomerException(UpdateCustomerException s, WebRequest webRequest) {
         return new ResponseEntity<ErrorResponse>(new ErrorResponse().code(s.getCode()).message(s.getErrorMessage()), HttpStatus.BAD_REQUEST);
     }
 

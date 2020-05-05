@@ -3,10 +3,8 @@ package com.upgrad.FoodOrderingApp.service.businness;
 import com.upgrad.FoodOrderingApp.service.dao.CustomerDao;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerAuthEntity;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerEntity;
-import com.upgrad.FoodOrderingApp.service.exception.AuthenticationFailedException;
-import com.upgrad.FoodOrderingApp.service.exception.SignUpRestrictedException;
+import com.upgrad.FoodOrderingApp.service.exception.*;
 
-import com.upgrad.FoodOrderingApp.service.exception.AuthorizationFailedException;
 import com.upgrad.FoodOrderingApp.service.exception.SignUpRestrictedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -171,5 +169,23 @@ public class CustomerServiceImpl implements CustomerService {
 
          customerDao.updateCustomerAuthEntity(customerAuthEntity);
 
+    }
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public CustomerEntity password(String accessToken,String oldpwd,String newPwd) throws AuthorizationFailedException, UpdateCustomerException {
+       CustomerAuthEntity customerAuthEntity = authorization(accessToken);
+       if(valididatePassword(newPwd)==false){
+           throw new  UpdateCustomerException("UCR-001","Weak password!");
+       }
+       CustomerEntity customerEntity = customerAuthEntity.getCustomer();
+       final String encryptedPassword = PasswordCryptographyProvider.encrypt(oldpwd, customerEntity.getSalt());
+       if(!encryptedPassword.equals(customerEntity.getPassword())){
+           throw  new UpdateCustomerException("UCR-004","Incorrect old password!)");
+       }
+        String[] encryptPassoword = passwordCryptographyProvider.encrypt(newPwd);
+
+        customerEntity.setSalt(encryptPassoword[0]);
+        customerEntity.setPassword(encryptPassoword[1]);
+       return customerDao.saveCustomer(customerEntity);
     }
 }

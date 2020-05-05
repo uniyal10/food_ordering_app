@@ -7,6 +7,7 @@ import com.upgrad.FoodOrderingApp.service.entity.CustomerEntity;
 import com.upgrad.FoodOrderingApp.service.exception.AuthenticationFailedException;
 import com.upgrad.FoodOrderingApp.service.exception.AuthorizationFailedException;
 import com.upgrad.FoodOrderingApp.service.exception.SignUpRestrictedException;
+import com.upgrad.FoodOrderingApp.service.exception.UpdateCustomerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -115,5 +116,21 @@ public class CustomerController {
         return new ResponseEntity<LogoutResponse>(logoutResponse, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.PUT, path = "/password", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<UpdatePasswordResponse> changepwd(@RequestHeader("authorization") final String auth,@RequestBody final UpdatePasswordRequest updatePasswordRequest)
+            throws AuthorizationFailedException, UpdateCustomerException {
+        if(updatePasswordRequest.getNewPassword().isEmpty() || updatePasswordRequest.getOldPassword().isEmpty()){
+            throw new UpdateCustomerException("UCR-003","No field should be empty");
+        }
+        String accessToken[] = auth.split("Bearer ");
+        String oldpwd = updatePasswordRequest.getOldPassword();
+        String newpwd = updatePasswordRequest.getNewPassword();
+        CustomerEntity customerEntity = customerService.password(accessToken[1],oldpwd,newpwd);
+        UpdatePasswordResponse updatePasswordResponse = new UpdatePasswordResponse();
+        updatePasswordResponse.setId(customerEntity.getUuid());
+
+        updatePasswordResponse.setStatus("password updated sucessfully");
+        return new ResponseEntity<UpdatePasswordResponse>(updatePasswordResponse, HttpStatus.OK);
+    }
 
 }

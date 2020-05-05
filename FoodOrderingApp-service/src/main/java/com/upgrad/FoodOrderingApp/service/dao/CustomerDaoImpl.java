@@ -49,4 +49,11 @@ public class CustomerDaoImpl implements CustomerDao {
             return null;
         }
     }
+//    public CustomerEntity updatepwd(CustomerEntity customerEntity,String pwd){
+//        try {
+//            return entityManager.createNamedQuery("changePassword", CustomerEntity.class).setParameter("number",customerEntity.getContactNumber()).getSingleResult();
+//        } catch (NoResultException nre) {
+//            return null;
+//        }
+//    }
 }
